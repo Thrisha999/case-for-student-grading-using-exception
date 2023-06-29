@@ -1,0 +1,34 @@
+--QUERY:To implement case for student grading using exception
+
+--PL/SQL Block:
+declare
+	grade varchar(1);
+	exp1 Exception;
+begin
+	grade:='&grade';
+	case grade
+	when 'O' then
+	  dbms_output.put_line('outstanding');
+	when 'A' then
+	  dbms_output.put_line('Excellent');
+	when 'B' then
+	  dbms_output.put_line('Good');
+	when 'C' then
+	  dbms_output.put_line('Average');
+	when 'D' then
+	  dbms_output.put_line('Below average');
+	else
+	  raise exp1;
+	end case;
+exception
+	when exp1 then
+	  dbms_output.put_line('No such grade exists');
+end;
+/
+--output:
+Enter value for grade: i
+old   5:        grade:='&grade';
+new   5:        grade:='i';
+No such grade exists
+
+PL/SQL procedure successfully completed.
